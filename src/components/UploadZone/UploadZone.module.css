@@ -1,0 +1,112 @@
+.wrapper {
+  width: 100%;
+}
+
+.zone {
+  width: 100%;
+  min-height: 180px;
+  border: 1.5px dashed var(--c-border-strong);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--t), background var(--t);
+  background: var(--c-surface);
+  user-select: none;
+  outline: none;
+}
+
+.zone:hover,
+.zone:focus-visible {
+  border-color: var(--c-fg);
+  background: var(--c-surface-2);
+}
+
+.dragging {
+  border-color: var(--c-fg);
+  background: var(--c-surface-2);
+  border-style: solid;
+}
+
+.loading {
+  cursor: default;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--c-text-secondary);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+
+.headline {
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--c-text-primary);
+}
+
+.subtext {
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  color: var(--c-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.spinner {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--c-border);
+  border-top-color: var(--c-fg);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--c-error);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--sp-4);
+  padding: 0 var(--sp-1);
+}
+
+.count {
+  font-size: var(--fs-sm);
+  color: var(--c-text-secondary);
+  font-weight: 500;
+}
+
+.clear {
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color var(--t-fast);
+}
+
+.clear:hover {
+  color: var(--c-text-primary);
+}
