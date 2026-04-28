@@ -98,7 +98,30 @@
 .footer {
   border-top: 1px solid var(--c-border);
   padding: var(--sp-5) var(--sp-8);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.footer p {
+  font-size: var(--fs-xs);
+  color: var(--c-text-muted);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--c-text-muted);
+  transition: color var(--t);
+}
+
+.footerLink:hover {
+  color: var(--c-fg);
 }
 
 .footer p {
