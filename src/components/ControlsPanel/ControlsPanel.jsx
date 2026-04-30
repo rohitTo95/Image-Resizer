@@ -40,8 +40,12 @@ export default function ControlsPanel({ group }) {
       setCustomResize({ width: val, height: customResize.height });
       return;
     }
-    const dims = calculateFromWidth(group.width, group.height, w);
-    setCustomResize({ width: String(w), height: String(dims.height) });
+    if (settings.cropEnabled) {
+      setCustomResize({ width: String(w), height: customResize.height });
+    } else {
+      const dims = calculateFromWidth(group.width, group.height, w);
+      setCustomResize({ width: String(w), height: String(dims.height) });
+    }
     setSelectedSize(null);
   }
 
@@ -51,8 +55,12 @@ export default function ControlsPanel({ group }) {
       setCustomResize({ width: customResize.width, height: val });
       return;
     }
-    const dims = calculateFromHeight(group.width, group.height, h);
-    setCustomResize({ width: String(dims.width), height: String(h) });
+    if (settings.cropEnabled) {
+      setCustomResize({ width: customResize.width, height: String(h) });
+    } else {
+      const dims = calculateFromHeight(group.width, group.height, h);
+      setCustomResize({ width: String(dims.width), height: String(h) });
+    }
     setSelectedSize(null);
   }
 
@@ -158,7 +166,15 @@ export default function ControlsPanel({ group }) {
             />
             <span className={styles.dimUnit}>px</span>
           </label>
-          <span className={styles.x}>×</span>
+          <button
+            className={`${styles.lockBtn} ${settings.cropEnabled ? styles.lockBtnUnlocked : ''}`}
+            onClick={() => updateSettings({ cropEnabled: !settings.cropEnabled })}
+            title={settings.cropEnabled ? 'Unlocked — enter any size' : 'Locked — aspect ratio preserved'}
+            aria-label={settings.cropEnabled ? 'Unlock aspect ratio' : 'Lock aspect ratio'}
+            type="button"
+          >
+            {settings.cropEnabled ? <UnlockIcon /> : <LockIcon />}
+          </button>
           <label className={styles.dimInput}>
             <span className={styles.dimLabel}>H</span>
             <input
@@ -282,6 +298,26 @@ export default function ControlsPanel({ group }) {
         )}
       </button>
     </div>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </svg>
+  );
+}
+
+function UnlockIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+    </svg>
   );
 }
 
