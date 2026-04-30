@@ -1,3 +1,5 @@
+<img width="2046" height="1000" alt="image" src="https://github.com/user-attachments/assets/6a9bc083-5581-433b-b5a2-f2215e9e48ec" />
+
 # Image Resizer
 
 A privacy-first, client-side image processing tool. Upload, group, resize, convert, and export images — entirely in the browser. No server. No uploads. No data leaves your device.
